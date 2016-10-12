@@ -15,9 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 
-/**
- * Created by kumar on 12/10/16.
- */
+
 public class CalendarAdapter extends ArrayAdapter<Date> {
     // days with events
     private HashSet<Date> eventDays;
@@ -72,7 +70,7 @@ public class CalendarAdapter extends ArrayAdapter<Date> {
         if (month != today.getMonth() || year != today.getYear())
         {
             // if this day is outside current month, grey it out
-            ((TextView)view).setTextColor(ContextCompat.getColor(getContext(),R.color.greyed_out));
+//            ((TextView)view).setTextColor(ContextCompat.getColor(getContext(),R.color.greyed_out));
         }
         else if (day == today.getDate())
         {

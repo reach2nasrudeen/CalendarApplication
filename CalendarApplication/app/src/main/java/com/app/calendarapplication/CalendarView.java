@@ -33,7 +33,7 @@ public class CalendarView extends LinearLayout {
     private String dateFormat;
 
     // current displayed month
-    private Calendar currentDate = Calendar.getInstance();
+    private Calendar currentDate1 = Calendar.getInstance();
 
     //event handling
     private EventHandler eventHandler = null;
@@ -73,8 +73,6 @@ public class CalendarView extends LinearLayout {
         loadDateFormat(attrs);
         assignUiElements();
         assignClickHandlers();
-
-        updateCalendar();
     }
 
     private void loadDateFormat(AttributeSet attrs)
@@ -102,7 +100,13 @@ public class CalendarView extends LinearLayout {
 
     private void assignClickHandlers()
     {
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+                eventHandler.onDayPress((Date)adapterView.getItemAtPosition(i));
+            }
+        });
         // long-pressing a day
         grid.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener()
         {
@@ -123,18 +127,18 @@ public class CalendarView extends LinearLayout {
     /**
      * Display dates correctly in grid
      */
-    public void updateCalendar()
+    public void updateCalendar(Calendar calendar)
     {
-        updateCalendar(null);
+        updateCalendar(null,calendar);
     }
 
     /**
      * Display dates correctly in grid
      */
-    public void updateCalendar(HashSet<Date> events)
+    public void updateCalendar(HashSet<Date> events,Calendar calCurrentDate)
     {
         ArrayList<Date> cells = new ArrayList<>();
-        Calendar calendar = (Calendar)currentDate.clone();
+        Calendar calendar = (Calendar)calCurrentDate.clone();
 
         // determine the cell for current month's beginning
         calendar.set(Calendar.DAY_OF_MONTH, 1);
@@ -155,7 +159,7 @@ public class CalendarView extends LinearLayout {
 
         // update title
         SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
-        txtDate.setText(sdf.format(currentDate.getTime()));
+        txtDate.setText(sdf.format(calCurrentDate.getTime()));
     }
     /**
      * Assign event handler to be passed needed events
@@ -172,5 +176,6 @@ public class CalendarView extends LinearLayout {
     public interface EventHandler
     {
         void onDayLongPress(Date date);
+        void onDayPress(Date date);
     }
 }
