@@ -45,9 +45,11 @@ public class CalendarAdapter extends ArrayAdapter<Date> {
         // inflate item if it does not exist yet
         if (view == null)
             view = inflater.inflate(R.layout.control_calendar_day, parent, false);
-
+        TextView textDay = (TextView) view.findViewById(R.id.day_view);
+        TextView textPrice = (TextView) view.findViewById(R.id.textPrice);
         // if this day has an event, specify event image
         view.setBackgroundResource(0);
+        view.setBackgroundColor(ContextCompat.getColor(getContext(),android.R.color.white));
         if (eventDays != null)
         {
             for (Date eventDate : eventDays)
@@ -64,23 +66,25 @@ public class CalendarAdapter extends ArrayAdapter<Date> {
         }
 
         // clear styling
-        ((TextView)view).setTypeface(null, Typeface.NORMAL);
-        ((TextView)view).setTextColor(Color.BLACK);
+        textDay.setTypeface(null, Typeface.NORMAL);
+        textDay.setTextColor(Color.BLACK);
 
         if (month != today.getMonth() || year != today.getYear())
         {
+            view.setBackgroundColor(ContextCompat.getColor(getContext(),android.R.color.holo_green_dark));
+            textDay.setTextColor(ContextCompat.getColor(getContext(),android.R.color.white));
             // if this day is outside current month, grey it out
 //            ((TextView)view).setTextColor(ContextCompat.getColor(getContext(),R.color.greyed_out));
         }
         else if (day == today.getDate())
         {
             // if it is today, set it to blue/bold
-            ((TextView)view).setTypeface(null, Typeface.BOLD);
-            ((TextView)view).setTextColor(ContextCompat.getColor(getContext(),R.color.today));
+            textDay.setTypeface(null, Typeface.BOLD);
+            textDay.setTextColor(ContextCompat.getColor(getContext(),R.color.today));
         }
 
         // set text
-        ((TextView)view).setText(String.valueOf(date.getDate()));
+        textDay.setText(String.valueOf(date.getDate()));
 
         return view;
     }

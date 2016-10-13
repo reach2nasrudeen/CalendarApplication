@@ -5,4 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="today">#4b82ff</color>
     <color name="greyed_out">#c7c7c7</color>
+
+    <color name="bgPriceCalTitleColor">#f8d1d3</color>
+    <color name="textPriceCalTitleColor">#eb757b</color>
 </resources>

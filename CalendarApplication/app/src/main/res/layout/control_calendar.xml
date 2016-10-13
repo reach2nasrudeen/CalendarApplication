@@ -8,6 +8,7 @@
 
 	<!-- date toolbar -->
 	<RelativeLayout
+		android:background="@color/bgPriceCalTitleColor"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:paddingTop="12dp"
@@ -18,19 +19,21 @@
 
 		<!-- date title -->
 		<TextView
+
 			android:id="@+id/calendar_date_display"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_centerHorizontal="true"
 			android:gravity="center"
 			android:textAppearance="@android:style/TextAppearance.Medium"
-			android:textColor="#222222"
+			android:textColor="@color/textPriceCalTitleColor"
 			android:text="current date"/>
 
 	</RelativeLayout>
 
 	<!-- days header -->
 	<LinearLayout
+		android:background="@color/textPriceCalTitleColor"
 		android:id="@+id/calendar_header"
 		android:layout_width="match_parent"
 		android:layout_height="40dp"
@@ -42,7 +45,7 @@
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
 			android:gravity="center_horizontal"
-			android:textColor="#222222"
+			android:textColor="@android:color/white"
 			android:text="SUN"/>
 
 		<TextView
@@ -50,7 +53,7 @@
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
 			android:gravity="center_horizontal"
-			android:textColor="#222222"
+			android:textColor="@android:color/white"
 			android:text="MON"/>
 
 		<TextView
@@ -58,7 +61,7 @@
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
 			android:gravity="center_horizontal"
-			android:textColor="#222222"
+			android:textColor="@android:color/white"
 			android:text="TUE"/>
 
 		<TextView
@@ -66,7 +69,7 @@
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
 			android:gravity="center_horizontal"
-			android:textColor="#222222"
+			android:textColor="@android:color/white"
 			android:text="WED"/>
 
 		<TextView
@@ -74,7 +77,7 @@
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
 			android:gravity="center_horizontal"
-			android:textColor="#222222"
+			android:textColor="@android:color/white"
 			android:text="THU"/>
 
 		<TextView
@@ -82,7 +85,7 @@
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
 			android:gravity="center_horizontal"
-			android:textColor="#222222"
+			android:textColor="@android:color/white"
 			android:text="FRI"/>
 
 		<TextView
@@ -90,14 +93,17 @@
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
 			android:gravity="center_horizontal"
-			android:textColor="#222222"
+			android:textColor="@android:color/white"
 			android:text="SAT"/>
 	</LinearLayout>
 
 	<!-- days view -->
 	<com.app.calendarapplication.NonScrollableGridView
+		android:background="@android:color/darker_gray"
 		android:id="@+id/calendar_grid"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		android:horizontalSpacing="1dp"
+		android:verticalSpacing="1dp"
 		android:numColumns="7"/>
 </LinearLayout>
