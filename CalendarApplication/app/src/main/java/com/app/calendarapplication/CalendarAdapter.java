@@ -64,8 +64,6 @@ public class CalendarAdapter extends ArrayAdapter<Date> {
         if(Helper.checkSameMonthOrNot(calendar.get(Calendar.MONTH)+1, Helper.getDate(date))){
 
             if(Helper.compareDates(Helper.getDate(date),Helper.getCurrentDate())){
-//                if (day == today.getDate())
-//                {
                     textPrice.setText("1000");
                     // if it is today, set it to blue/bold
 //                    textDay.setTypeface(null, Typeface.BOLD);
