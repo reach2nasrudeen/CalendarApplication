@@ -1,11 +1,19 @@
 package com.app.calendarapplication;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 
 public class Helper {
     public static boolean currentMonth = false;
+    public static boolean initialMonth;
+    public static String dfDDMMYY = "dd-MM-yy";
+    public static String dfDDMMYYYY = "dd-MM-yyyy";
+    public static String dfMMDDYYYY = "MM-dd-yyyy";
+    public static String dfYYYYMMDD = "yyyy-MM-dd";
+
     public static String[] stringMonths;
     public static String[] get12Months(){
         stringMonths = new String[12];
@@ -36,5 +44,32 @@ public class Helper {
                 break;
         }
         return totalCount;
+    }
+    public static String getDate(Date inputDate){
+        String outputDate = null;
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//        Calendar cal = Calendar.getInstance();
+//        outputDate = dateFormat.format(cal.getTime());
+        outputDate = dateFormat.format(inputDate);
+        System.out.println(outputDate);
+        return outputDate;
+    }
+    public static boolean checkSameMonthOrNot(int currentMonth,String inputDate){
+        boolean status = false;
+        int strMonth = Integer.parseInt(getSplittedMonth(inputDate));
+        if(strMonth == currentMonth){
+            status = true;
+        }else {
+            status = false;
+        }
+        return status;
+    }
+
+    public static String getSplittedMonth(String inputDate){
+        String[] parts = inputDate.split("/");
+        String strSplittedDate = parts[0];
+        String strSplittedMonth = parts[1];
+        String strSplittedYear = parts[2];
+        return strSplittedMonth;
     }
 }

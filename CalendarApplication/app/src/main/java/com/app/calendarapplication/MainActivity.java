@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements CalendarView.Even
         CalendarView cv10 = ((CalendarView)findViewById(R.id.calendar_view10));
         CalendarView cv11 = ((CalendarView)findViewById(R.id.calendar_view11));
 
+
         cv.updateCalendar(initCalendar(0));
         cv1.updateCalendar(initCalendar(1));
         cv2.updateCalendar(initCalendar(2));
@@ -60,6 +61,11 @@ public class MainActivity extends AppCompatActivity implements CalendarView.Even
         cv11.setEventHandler(this);
     }
     private Calendar initCalendar(int position){
+        if(position == 0){
+            Helper.initialMonth = true;
+        }else {
+            Helper.initialMonth = false;
+        }
         Date parsed = new Date();
         Calendar calendar;
         try {

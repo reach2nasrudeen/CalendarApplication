@@ -156,12 +156,12 @@ public class CalendarView extends LinearLayout {
         while (cells.size() < Helper.getCountOfMonth(calCurrentDate))
         {
             cells.add(calendar.getTime());
-            Log.i("Date",cells.toString());
+         //   Log.i("Date",cells.toString());
             calendar.add(Calendar.DAY_OF_MONTH, 1);
         }
 
         // update grid
-        grid.setAdapter(new CalendarAdapter(getContext(), cells, events));
+        grid.setAdapter(new CalendarAdapter(getContext(), cells, events,calCurrentDate));
 
         // update title
         SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);

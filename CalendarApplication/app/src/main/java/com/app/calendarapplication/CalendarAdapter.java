@@ -14,6 +14,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 
@@ -21,15 +22,16 @@ import java.util.HashSet;
 public class CalendarAdapter extends ArrayAdapter<Date> {
     // days with events
     private HashSet<Date> eventDays;
-
+    private Calendar calendar;
     // for view inflation
     private LayoutInflater inflater;
 
-    public CalendarAdapter(Context context, ArrayList<Date> days, HashSet<Date> eventDays)
+    public CalendarAdapter(Context context, ArrayList<Date> days, HashSet<Date> eventDays, Calendar calendar)
     {
         super(context, R.layout.control_calendar_day, days);
         this.eventDays = eventDays;
         inflater = LayoutInflater.from(context);
+        this.calendar = calendar;
     }
 
     @Override
@@ -71,24 +73,30 @@ public class CalendarAdapter extends ArrayAdapter<Date> {
         textDay.setTypeface(null, Typeface.NORMAL);
         textDay.setTextColor(Color.BLACK);
 
-        if (month != today.getMonth() || year != today.getYear())
-        {
-            view.setBackgroundColor(ContextCompat.getColor(getContext(),android.R.color.holo_green_dark));
-            textDay.setTextColor(ContextCompat.getColor(getContext(),android.R.color.white));
-            // if this day is outside current month, grey it out
-//            ((TextView)view).setTextColor(ContextCompat.getColor(getContext(),R.color.greyed_out));
-        }
-        else if (day == today.getDate())
-        {
-            // if it is today, set it to blue/bold
-            textDay.setTypeface(null, Typeface.BOLD);
-            textDay.setTextColor(ContextCompat.getColor(getContext(),R.color.today));
-        }
+//        if (month != today.getMonth() || year != today.getYear())
+//        {
+//            view.setBackgroundColor(ContextCompat.getColor(getContext(),android.R.color.holo_green_dark));
+//            textDay.setTextColor(ContextCompat.getColor(getContext(),android.R.color.white));
+//            // if this day is outside current month, grey it out
+////            ((TextView)view).setTextColor(ContextCompat.getColor(getContext(),R.color.greyed_out));
+//        }
+        Log.i("Current Date ", Helper.getDate(date));
+        Log.i("Current Date ", Helper.getDate(date));
 
-        // set text
-        textDay.setText(String.valueOf(date.getDate()));
-        //Log.i("Date",String.valueOf(date.getDate()));
-
+        if(Helper.checkSameMonthOrNot(calendar.get(Calendar.MONTH)+1, Helper.getDate(date))){
+            if (day == today.getDate())
+            {
+                textPrice.setText("1000");
+                // if it is today, set it to blue/bold
+                textDay.setTypeface(null, Typeface.BOLD);
+                textDay.setTextColor(ContextCompat.getColor(getContext(),R.color.today));
+            }
+            // set text
+            textDay.setText(String.valueOf(date.getDate()));
+            //Log.i("Date",String.valueOf(date.getDate()));
+        }else {
+            view.setBackgroundColor(ContextCompat.getColor(getContext(),android.R.color.white));
+        }
         return view;
     }
 }
