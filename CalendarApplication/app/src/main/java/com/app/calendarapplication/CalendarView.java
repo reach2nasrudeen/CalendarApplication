@@ -3,6 +3,7 @@ package com.app.calendarapplication;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -147,10 +148,15 @@ public class CalendarView extends LinearLayout {
         // move calendar backwards to the beginning of the week
         calendar.add(Calendar.DAY_OF_MONTH, -monthBeginningCell);
 
+//        if(Helper.getNoOfWeeks(calCurrentDate) == 5){
+//
+//        }
+
         // fill cells
-        while (cells.size() < DAYS_COUNT)
+        while (cells.size() < Helper.getCountOfMonth(calCurrentDate))
         {
             cells.add(calendar.getTime());
+            Log.i("Date",cells.toString());
             calendar.add(Calendar.DAY_OF_MONTH, 1);
         }
 

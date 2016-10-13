@@ -5,10 +5,12 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -85,6 +87,7 @@ public class CalendarAdapter extends ArrayAdapter<Date> {
 
         // set text
         textDay.setText(String.valueOf(date.getDate()));
+        //Log.i("Date",String.valueOf(date.getDate()));
 
         return view;
     }
