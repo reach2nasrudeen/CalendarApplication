@@ -54,46 +54,38 @@ public class CalendarAdapter extends ArrayAdapter<Date> {
         // if this day has an event, specify event image
         view.setBackgroundResource(0);
         view.setBackgroundColor(ContextCompat.getColor(getContext(),android.R.color.white));
-        if (eventDays != null)
-        {
-            for (Date eventDate : eventDays)
-            {
-                if (eventDate.getDate() == day &&
-                        eventDate.getMonth() == month &&
-                        eventDate.getYear() == year)
-                {
-                    // mark this day for event
-                    view.setBackgroundResource(R.mipmap.ic_launcher);
-                    break;
-                }
-            }
-        }
 
         // clear styling
         textDay.setTypeface(null, Typeface.NORMAL);
         textDay.setTextColor(Color.BLACK);
 
-//        if (month != today.getMonth() || year != today.getYear())
-//        {
-//            view.setBackgroundColor(ContextCompat.getColor(getContext(),android.R.color.holo_green_dark));
-//            textDay.setTextColor(ContextCompat.getColor(getContext(),android.R.color.white));
-//            // if this day is outside current month, grey it out
-////            ((TextView)view).setTextColor(ContextCompat.getColor(getContext(),R.color.greyed_out));
-//        }
-        Log.i("Current Date ", Helper.getDate(date));
-        Log.i("Current Date ", Helper.getDate(date));
+
 
         if(Helper.checkSameMonthOrNot(calendar.get(Calendar.MONTH)+1, Helper.getDate(date))){
-            if (day == today.getDate())
-            {
-                textPrice.setText("1000");
-                // if it is today, set it to blue/bold
+
+            if(Helper.compareDates(Helper.getDate(date),Helper.getCurrentDate())){
+//                if (day == today.getDate())
+//                {
+                    textPrice.setText("1000");
+                    // if it is today, set it to blue/bold
+//                    textDay.setTypeface(null, Typeface.BOLD);
+//                    textDay.setTextColor(ContextCompat.getColor(getContext(),R.color.today));
+//                }
+                // set text
+                textDay.setText(String.valueOf(date.getDate()));
                 textDay.setTypeface(null, Typeface.BOLD);
-                textDay.setTextColor(ContextCompat.getColor(getContext(),R.color.today));
             }
-            // set text
-            textDay.setText(String.valueOf(date.getDate()));
-            //Log.i("Date",String.valueOf(date.getDate()));
+            else {
+
+                // set text
+                textDay.setText(String.valueOf(date.getDate()));
+                textDay.setTextColor(ContextCompat.getColor(getContext(),android.R.color.darker_gray));
+                textDay.setEnabled(false);
+                view.setOnClickListener(null);
+//                textPrice.setVisibility(View.INVISIBLE);
+//                view.setBackgroundColor(ContextCompat.getColor(getContext(),android.R.color.darker_gray));
+            }
+
         }else {
             textDay.setVisibility(View.INVISIBLE);
             textPrice.setVisibility(View.INVISIBLE);

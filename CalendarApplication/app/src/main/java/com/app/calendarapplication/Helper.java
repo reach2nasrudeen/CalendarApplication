@@ -1,18 +1,15 @@
 package com.app.calendarapplication;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 
 public class Helper {
-    public static boolean currentMonth = false;
     public static boolean initialMonth;
-    public static String dfDDMMYY = "dd-MM-yy";
-    public static String dfDDMMYYYY = "dd-MM-yyyy";
-    public static String dfMMDDYYYY = "MM-dd-yyyy";
-    public static String dfYYYYMMDD = "yyyy-MM-dd";
+    public static String dfDDMMYYYY = "dd/MM/yyyy";
 
     public static String[] stringMonths;
     public static String[] get12Months(){
@@ -47,9 +44,7 @@ public class Helper {
     }
     public static String getDate(Date inputDate){
         String outputDate = null;
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-//        Calendar cal = Calendar.getInstance();
-//        outputDate = dateFormat.format(cal.getTime());
+        DateFormat dateFormat = new SimpleDateFormat(Helper.dfDDMMYYYY);
         outputDate = dateFormat.format(inputDate);
         System.out.println(outputDate);
         return outputDate;
@@ -64,12 +59,49 @@ public class Helper {
         }
         return status;
     }
-
     public static String getSplittedMonth(String inputDate){
         String[] parts = inputDate.split("/");
         String strSplittedDate = parts[0];
         String strSplittedMonth = parts[1];
         String strSplittedYear = parts[2];
         return strSplittedMonth;
+    }
+    public static String getCurrentDate(){
+        String outputDate = null;
+        DateFormat dateFormat = new SimpleDateFormat(Helper.dfDDMMYYYY);
+        Calendar cal = Calendar.getInstance();
+        outputDate = dateFormat.format(cal.getTime());
+        System.out.println(dateFormat.format(cal.getTime()));
+        return outputDate;
+    }
+    public static boolean compareDates(String fromDate, String toDate){
+        Boolean status = false;
+        try{
+            SimpleDateFormat sdf = new SimpleDateFormat(Helper.dfDDMMYYYY);
+            Date date1 = sdf.parse(fromDate);
+            Date date2 = sdf.parse(toDate);
+
+            System.out.println(sdf.format(date1));
+            System.out.println(sdf.format(date2));
+
+            if(date1.after(date2)){
+                //System.out.println("Date1 is after Date2");
+                status = true;
+            }
+
+            if(date1.before(date2)){
+                //System.out.println("Date1 is before Date2");
+                status = false;
+            }
+
+            if(date1.equals(date2)){
+                //System.out.println("Date1 is equal Date2");
+                status = true;
+            }
+
+        }catch(ParseException ex){
+            ex.printStackTrace();
+        }
+        return status;
     }
 }
