@@ -95,7 +95,8 @@ public class CalendarAdapter extends ArrayAdapter<Date> {
             textDay.setText(String.valueOf(date.getDate()));
             //Log.i("Date",String.valueOf(date.getDate()));
         }else {
-            view.setBackgroundColor(ContextCompat.getColor(getContext(),android.R.color.white));
+            textDay.setVisibility(View.INVISIBLE);
+            textPrice.setVisibility(View.INVISIBLE);
         }
         return view;
     }
