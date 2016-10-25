@@ -13,8 +13,8 @@ public class Helper {
 
     public static String[] stringMonths;
     public static String[] get12Months(){
-        stringMonths = new String[12];
-        for(int i=0;i<12;i++){
+        stringMonths = new String[22];
+        for(int i=0;i<22;i++){
             Calendar calendar = Calendar.getInstance();
             calendar.add(Calendar.MONTH, i);
             calendar.set(Calendar.DATE, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
@@ -25,9 +25,11 @@ public class Helper {
         return stringMonths;
     }
     public static int getNoOfWeeks(Calendar calendar){
+        calendar.setFirstDayOfWeek(Calendar.SUNDAY);
         return calendar.getActualMaximum(Calendar.WEEK_OF_MONTH);
     }
     public static int getCountOfMonth(Calendar calendar){
+
         int totalCount = 0;
         switch (Helper.getNoOfWeeks(calendar)){
             case 4:

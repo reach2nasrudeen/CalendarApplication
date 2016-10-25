@@ -2,6 +2,7 @@ package com.app.calendarapplication;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.text.DateFormat;
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements CalendarView.Even
         Date parsed = new Date();
         Calendar calendar;
         try {
+//            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
             SimpleDateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
             parsed = format.parse(months[position]);
             calendar = Calendar.getInstance();
@@ -77,6 +79,8 @@ public class MainActivity extends AppCompatActivity implements CalendarView.Even
         catch(ParseException pe) {
             throw new IllegalArgumentException();
         }
+        Log.e("Cal Data Month=>",String.valueOf(calendar.get(Calendar.MONTH)));
+        Log.e("Cal Data Year=>",String.valueOf(calendar.get(Calendar.YEAR)));
         return calendar;
     }
 

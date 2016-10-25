@@ -151,7 +151,8 @@ public class CalendarView extends LinearLayout {
 //        if(Helper.getNoOfWeeks(calCurrentDate) == 5){
 //
 //        }
-
+//        Log.e("Total =>",String.valueOf(Helper.getCountOfMonth(calCurrentDate)));
+        Log.e("Total =>",String.valueOf(calCurrentDate.getMaximum(Calendar.WEEK_OF_MONTH)));
         // fill cells
         while (cells.size() < Helper.getCountOfMonth(calCurrentDate))
         {
